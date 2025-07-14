@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Registrar Nuevo Vehículo</h2>
+    <form class="form-registro" method="POST">
+        <label>Placa:</label><input type="text" name="placa" required>
+        <label>Marca:</label><input type="text" name="marca" required>
+        <label>Modelo:</label><input type="text" name="modelo" required>
+        <label>Propietario:</label>
+        <select name="propietario_cedula" required>
+            <option value="">-- Seleccione un propietario --</option>
+            {% for p in propietarios %}
+                <option value="{{ p['cedula'] }}">{{ p['nombre'] }} ({{ p['cedula'] }})</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Registrar Vehículo</button>
+    </form>
+{% endblock %}

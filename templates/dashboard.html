@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="parqueo-mapa">
+        <h2>Mapa del Parqueo</h2>
+        <div class="grid-container">
+            {% for fila in estado_parqueo %}
+                {% for espacio in fila %}
+                    <div class="grid-item {% if espacio %}ocupado{% else %}libre{% endif %}">
+                        {{ espacio or 'Libre' }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="acciones-panel">
+        <h2>Acciones</h2>
+        <form action="{{ url_for('ingresar_vehiculo') }}" method="POST">
+            <label for="placa_ingreso">Placa para Ingresar:</label>
+            <input type="text" name="placa" id="placa_ingreso" required>
+            <button type="submit">Registrar Entrada</button>
+        </form>
+        <hr>
+        <form action="{{ url_for('retirar_vehiculo') }}" method="POST">
+            <label for="placa_retiro">Placa para Retirar:</label>
+            <input type="text" name="placa" id="placa_retiro" required>
+            <button type="submit">Registrar Salida</button>
+        </form>
+    </div>
+
+    <div class="espera-lista">
+        <h2>Lista de Espera (Cola)</h2>
+        {% if lista_espera %}
+            <ol>
+            {% for placa in lista_espera %}
+                <li>{{ placa }}</li>
+            {% endfor %}
+            </ol>
+        {% else %}
+            <p>No hay vehículos en espera.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

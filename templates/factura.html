@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="factura-container">
+    <h2>Factura de Parqueo</h2>
+    <div class="factura-header">
+        <div><strong>Factura ID:</strong> #{{ factura.id }}</div>
+        <div><strong>Fecha de Emisión:</strong> {{ factura.fecha_emision }}</div>
+    </div>
+    <hr>
+    <div class="factura-body">
+        <h3>Detalles del Cliente y Vehículo</h3>
+        <p><strong>Propietario:</strong> {{ factura.propietario_nombre }} (Cédula: {{ factura.cedula }})</p>
+        <p><strong>Vehículo (Placa):</strong> {{ factura.placa }}</p>
+        
+        <h3>Detalles del Servicio</h3>
+        <p><strong>Espacio Utilizado:</strong> {{ factura.espacio_asignado }}</p>
+        <p><strong>Hora de Entrada:</strong> {{ factura.hora_entrada }}</p>
+        <p><strong>Hora de Salida:</strong> {{ factura.hora_salida }}</p>
+        <p><strong>Tiempo Total:</strong> {{ "%.2f"|format(factura.tiempo_total_minutos) }} minutos</p>
+    </div>
+    <hr>
+    <div class="factura-footer">
+        <h3>Total a Pagar</h3>
+        <p class="total">₡ {{ "%.2f"|format(factura.monto_cobrado) }}</p>
+    </div>
+    <div class="acciones-factura">
+        <a href="{{ url_for('dashboard') }}" class="btn-volver">Volver al Dashboard</a>
+    </div>
+</div>
+{% endblock %}

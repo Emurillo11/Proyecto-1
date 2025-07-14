@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Registrar Nuevo Propietario</h2>
+    <form class="form-registro" method="POST">
+        <label>Cédula:</label><input type="text" name="cedula" required>
+        <label>Nombre Completo:</label><input type="text" name="nombre" required>
+        <label>Teléfono:</label><input type="text" name="telefono" required>
+        <label>Dirección:</label><input type="text" name="direccion" required>
+        <button type="submit">Registrar Propietario</button>
+    </form>
+{% endblock %}
